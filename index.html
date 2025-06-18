@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Green Nest Care - Expert Flower Gardening Services & Consultation</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f3f9f1;
+    color: #2e4d32;
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a {
+    color: #388e3c;
+    text-decoration: none;
+  }
+  a:hover, button:hover {
+    color: #2e7d32;
+  }
+
+  /* Header - sticky with navigation */
+  header {
+    position: sticky;
+    top: 0;
+    background: #a5d6a7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    box-shadow: 0 4px 8px rgb(94 113 89 / 0.3);
+    z-index: 1000;
+    flex-wrap: wrap;
+  }
+  header .logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+  }
+  header .logo img {
+    height: 40px;
+    margin-right: 8px;
+    filter: drop-shadow(1px 1px 1px rgba(46,125,50,0.5));
+  }
+  .header-title {
+    margin-left: 8px;
+    user-select: none;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+  }
+  nav.primary-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-grow: 1;
+    flex-wrap: wrap;
+  }
+  nav.primary-nav a {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    color: #2e7d32;
+  }
+  nav.primary-nav a:hover,
+  nav.primary-nav a.active {
+    background: #81c784;
+    color: #184a19;
+  }
+
+  /* Hero Section */
+  section.hero {
+    background: linear-gradient(135deg, #dcedc8 0%, #a5d6a7 100%);
+    padding: 96px 24px 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  section.hero h1 {
+    font-size: 3.8rem;
+    font-weight: 900;
+    color: #2e7d32;
+    margin-bottom: 16px;
+    line-height: 1.1;
+    text-shadow: 1px 1px 2px #689f38;
+  }
+  section.hero p.slogan {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #4caf50;
+    margin-bottom: 32px;
+  }
+  section.hero img.hero-image {
+    max-width: 320px;
+    border-radius: 24px;
+    border: 6px solid #aed581;
+    box-shadow: 0 12px 24px rgb(130 188 89 / 0.5);
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Butterfly decorations in hero */
+  .butterfly-hero {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    top: 12%;
+    left: 8%;
+    background: linear-gradient(45deg, #aed581, #81c784);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: inset 2px 4px 6px #aed581aa;
+    filter: drop-shadow(1px 1px 1px #357a38aa);
+    animation: flutter 4s infinite ease-in-out;
+    z-index: 10;
+  }
+  .butterfly-hero::before,
+  .butterfly-hero::after {
+    content: "";
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(45deg, #c5e1a5, #dcedc8);
+    border-radius: 50% 50% 50% 50% / 25% 25% 75% 75%;
+    filter: drop-shadow(1px 1px 1px #81c784bb);
+    top: 5px;
+  }
+  .butterfly-hero::before {
+    left: -20px;
+    transform: rotate(28deg);
+  }
+  .butterfly-hero::after {
+    right: -20px;
+    transform: rotate(-28deg);
+  }
+  @keyframes flutter {
+    0%, 100% {
+      transform: rotate(0deg) translateY(0);
+    }
+    50% {
+      transform: rotate(8deg) translateY(-8px);
+    }
+  }
+
+  /* Main content wrapper */
+  main.content {
+    max-width: 1200px;
+    padding: 48px 24px;
+    margin: 0 auto;
+  }
+
+  /* Services section */
+  section.services {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  section.services h2 {
+    font-size: 2.8rem;
+    color: #4caf50;
+    font-weight: 800;
+    margin-bottom: 24px;
+  }
+  .service-cards {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+  .service-card {
+    background: #dcedc8;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 8px 20px rgb(148 187 69 / 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgb(129 199 132 / 0.7);
+  }
+  .service-card img {
+    width: 180px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 14px rgb(163 193 114 / 0.9);
+  }
+  .service-card h3 {
+    color: #33691e;
+    font-weight: 900;
+    margin: 0 0 14px 0;
+  }
+  .service-card p {
+    color: #33691e;
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+  /* Service price */
+  .service-price {
+    margin-top: 10px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #2e7d32;
+  }
+
+  /* Consultation Form */
+  section.consultation {
+    background: #edf7e4;
+    border-radius: 24px;
+    box-shadow: 0 15px 28px rgb(159 201 131 / 0.4);
+    padding: 56px 40px;
+    margin-bottom: 64px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #2e5939;
+  }
+  section.consultation h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #4caf50;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  section.consultation p.intro {
+    font-size: 1.1rem;
+    max-width: 580px;
+    margin: 0 auto 36px auto;
+    line-height: 1.5;
+    color: #3e6e33;
+  }
+  form.consultation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  form.consultation-form label {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+  form.consultation-form input,
+  form.consultation-form textarea,
+  form.consultation-form select {
+    padding: 14px 16px;
+    font-size: 1.05rem;
+    border-radius: 14px;
+    border: 2px solid #81c784;
+    background: #f1f8e9;
+    color: #33691e;
+    outline-offset: 2px;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+  form.consultation-form input:focus,
+  form.consultation-form textarea:focus,
+  form.consultation-form select:focus {
+    border-color: #4caf50;
+  }
+  form.consultation-form textarea {
+    min-height: 110px;
+  }
+  form.consultation-form button {
+    background: #81c784;
+    border: none;
+    padding: 16px 0;
+    border-radius: 24px;
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: #204d20;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  form.consultation-form button:hover {
+    background: #4caf50;
+    color: white;
+  }
+  form .form-error {
+    color: #b71c1c;
+    font-size: 0.95rem;
+    margin-top: -6px;
+  }
+  form .form-success {
+    text-align: center;
+    color: #2e7d32;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  /* Feedback/Testimonial Section */
+  section.feedback {
+    max-width: 960px;
+    margin: 0 auto 64px auto;
+    text-align: center;
+  }
+  section.feedback h2 {
+    font-size: 2.8rem;
+    color: #4caf50;
+    font-weight: 800;
+    margin-bottom: 28px;
+  }
+  .testimonial-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
+  }
+  .testimonial {
+    background: #dcedc8;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgb(148 187 69 / 0.6);
+    padding: 28px 24px;
+    font-style: italic;
+    color: #33691e;
+    position: relative;
+  }
+  .testimonial::before {
+    content: '“';
+    font-size: 4rem;
+    font-weight: 700;
+    color: #81c784;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    user-select: none;
+  }
+  .testimonial p {
+    margin-bottom: 18px;
+  }
+  .testimonial cite {
+    display: block;
+    font-style: normal;
+    font-weight: 700;
+    color: #2e5939;
+    text-align: right;
+  }
+
+  /* Garden Design Ideas Section */
+  section.design-ideas {
+    max-width: 960px;
+    margin: 0 auto 64px auto;
+    color: #2e5939;
+  }
+  section.design-ideas h2 {
+    font-size: 2.8rem;
+    color: #4caf50;
+    font-weight: 800;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  /* Removed images, so just text blocks now */
+  .design-ideas p,
+  .design-ideas ul {
+    max-width: 700px;
+    margin: 0 auto 20px auto;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #33691e;
+  }
+  .design-ideas ul {
+    list-style: disc inside;
+  }
+
+  /* Tips Section */
+  section.tips {
+    max-width: 900px;
+    margin: 0 auto 64px auto;
+    color: #2e5939;
+  }
+  section.tips h2 {
+    font-size: 2.8rem;
+    color: #4caf50;
+    font-weight: 800;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  ul.tips-list {
+    list-style: square inside;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  ul.tips-list li {
+    margin-bottom: 14px;
+  }
+
+  /* FAQ Section */
+  section.faq {
+    max-width: 900px;
+    margin: 0 auto 64px auto;
+    color: #2e5939;
+    background: #e8f5e9;
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 8px 22px rgb(129 199 132 / 0.45);
+  }
+  section.faq h2 {
+    font-size: 2.8rem;
+    color: #4caf50;
+    font-weight: 900;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  details {
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    color: #2e5939;
+    cursor: pointer;
+  }
+  summary {
+    font-weight: 700;
+    outline: none;
+  }
+  details[open] summary {
+    color: #357a38;
+  }
+  details p {
+    margin-top: 8px;
+    padding-left: 16px;
+    line-height: 1.5;
+  }
+
+  /* Disclaimer Section */
+  section.disclaimer {
+    max-width: 720px;
+    margin: 0 auto 88px auto;
+    background: #dcedc8;
+    color: #558b2f;
+    font-style: italic;
+    font-size: 0.95rem;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 1px solid #81c784;
+    text-align: center;
+    box-shadow: inset 1px 1px 4px rgb(46 125 50 / 0.15);
+  }
+
+  /* Footer */
+  footer {
+    background: #a5d6a7;
+    padding: 32px 24px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #1b5e20;
+    box-shadow: 0 -4px 10px rgb(94 113 89 / 0.6);
+  }
+  footer address {
+    font-style: normal;
+    margin-top: 12px;
+  }
+  footer .customer-satisfaction {
+    margin-top: 14px;
+    font-size: 1.1rem;
+    color: #33691e;
+    font-style: normal;
+  }
+
+  /* Inputs focus for accessibility */
+  input:focus, select:focus, textarea:focus, button:focus, a:focus {
+    outline: 3px solid #4caf50;
+    outline-offset: 2px;
+  }
+
+  /* Responsive */
+
+  @media screen and (max-width: 900px) {
+    section.hero h1 {
+      font-size: 2.8rem;
+    }
+    section.hero p.slogan {
+      font-size: 1.3rem;
+    }
+    nav.primary-nav {
+      justify-content: center;
+    }
+    .service-cards {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    header {
+      justify-content: center;
+      gap: 12px;
+    }
+    nav.primary-nav {
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" aria-label="Green Nest Care logo with flower icon">
+    <img src="b1.png" alt="Green cartoon flower icon" />
+    <span class="header-title">Green Nest Care</span>
+  </div>
+  <nav class="primary-nav" role="navigation" aria-label="Primary navigation">
+        <a href="index.html" tabindex="0"aria-current="page">Home</a>
+        <a href="privacy.html" tabindex="0">Privacy</a>
+        <a href="terms.html" tabindex="0">Terms & conditons</a>
+        <a href="cookies.html"tabindex="0">Cookies</a>
+        <a href="contact.html" tabindex="0">Contact us</a>
+  </nav>
+</header>
+
+<section class="hero" id="hero" tabindex="-1">
+  <div class="butterfly-hero" aria-hidden="true"></div>
+  <h1>Green Nest Care</h1>
+  <p class="slogan">Let your garden feel like home.</p>
+  <img
+    class="hero-image"
+    src="p1.png"
+    alt="Happy family surrounded by lush green flower garden with butterflies"
+    width="320" height="240"
+  />
+</section>
+
+<main class="content">
+  <section class="services" id="services" tabindex="-1">
+    <h2>Our Family-friendly Gardening Services</h2>
+    <div class="service-cards" role="list">
+      <article class="service-card" role="listitem" tabindex="0" aria-label="Residential Flower Garden Maintenance Service">
+        <img src="s1.png" alt="Beautifully maintained flower garden with butterflies" />
+        <h3>Flower Garden Maintenance</h3>
+        <p>Regular tending, pruning, fertilizing, and pest management to keep your residential flower garden vibrant and healthy year-round.</p>
+        <div class="service-price" aria-label="Service price">$75 per visit</div>
+      </article>
+      <article class="service-card" role="listitem" tabindex="0" aria-label="Balcony Garden Setup Service">
+        <img src="s2.png" alt="Cozy balcony with colorful pots and blooming flowers" />
+        <h3>Balcony Garden Setup</h3>
+        <p>Personalized design and installation of dynamic balcony gardens optimized for limited spaces, perfect for city dwellers.</p>
+        <div class="service-price" aria-label="Service price">$150 - $300 depending on size</div>
+      </article>
+      <article class="service-card" role="listitem" tabindex="0" aria-label="Pollinator-friendly Butterfly Garden Planning">
+        <img src="s3.png" alt="Butterflies fluttering over colorful pollinator flower beds" />
+        <h3>Butterfly Garden Planning</h3>
+        <p>Consultation and plant selection focused on attracting butterflies and native pollinators to enliven your garden ecosystem.</p>
+        <div class="service-price" aria-label="Service price">$200 consultation</div>
+      </article>
+      <article class="service-card" role="listitem" tabindex="0" aria-label="Organic Soil and Compost Guidance and Supply">
+        <img src="s4.png" alt="Eco-friendly organic soil bags and compost near plants" />
+        <h3>Organic Soil & Compost</h3>
+        <p>Guidance and supply of earth-friendly, organic soil mixes and composts to nourish your plants naturally and sustainably.</p>
+        <div class="service-price" aria-label="Service price">Starting at $30 per bag</div>
+      </article>
+      <article class="service-card" role="listitem" tabindex="0" aria-label="Seasonal Planting and Flowering Calendar">
+        <img src="s5.png" alt="Seasonal flowers blooming in garden bed" />
+        <h3>Seasonal Planting & Flowering Calendar</h3>
+        <p>Customized flower planting schedules ensuring continuous blooms and vibrant colors through every season.</p>
+        <div class="service-price" aria-label="Service price">$100 per project</div>
+      </article>
+      <article class="service-card" role="listitem" tabindex="0" aria-label="Garden Cleanup and Preparation Services">
+        <img src="s6.png" alt="Professional preparing garden beds for new planting" />
+        <h3>Garden Cleanup & Preparation</h3>
+        <p>Expert removal of dead foliage, debris, and preparation of beds for replanting or seasonal changes.</p>
+        <div class="service-price" aria-label="Service price">$80 per visit</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="consultation" class="consultation" tabindex="-1" aria-label="Consultation booking form">
+    <h2>Book a Gardening Consultation</h2>
+    <p class="intro">Fill out the form below to schedule a personalized gardening consultation with our experts. We'll help design, plan, and nurture your dream garden!</p>
+    <form class="consultation-form" id="consultationForm" novalidate>
+      <label for="fullName">Full Name<span aria-hidden="true" style="color:#c62828;">*</span></label>
+      <input type="text" id="fullName" name="fullName" placeholder="Your full name" required aria-required="true" />
+      <span class="form-error" id="fullNameError" aria-live="assertive"></span>
+
+      <label for="emailAddress">Email Address<span aria-hidden="true" style="color:#c62828;">*</span></label>
+      <input type="email" id="emailAddress" name="emailAddress" placeholder="you@example.com" required aria-required="true" />
+      <span class="form-error" id="emailError" aria-live="assertive"></span>
+
+      <label for="phoneNumber">Phone Number</label>
+      <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+1 555 123 4567" />
+
+      <label for="preferredDate">Preferred Consultation Date<span aria-hidden="true" style="color:#c62828;">*</span></label>
+      <input type="date" id="preferredDate" name="preferredDate" required aria-required="true" />
+      <span class="form-error" id="dateError" aria-live="assertive"></span>
+
+      <label for="preferredTime">Preferred Consultation Time</label>
+      <select id="preferredTime" name="preferredTime" >
+        <option value="">Select a time</option>
+        <option value="9am-11am">9 AM - 11 AM</option>
+        <option value="11am-1pm">11 AM - 1 PM</option>
+        <option value="2pm-4pm">2 PM - 4 PM</option>
+        <option value="4pm-6pm">4 PM - 6 PM</option>
+      </select>
+
+      <label for="notes">Additional Notes or Questions</label>
+      <textarea id="notes" name="notes" placeholder="Let us know if there's anything specific you'd like to discuss..."></textarea>
+
+      <button type="submit" aria-label="Submit consultation booking form">Submit Consultation Request</button>
+      <p class="form-success" id="formSuccess" aria-live="polite" style="display:none;">Thank you! Your consultation request has been received. We will contact you shortly.</p>
+    </form>
+  </section>
+
+  <section id="design-ideas" class="design-ideas" tabindex="-1" aria-label="Garden design ideas">
+    <h2>Garden Design Ideas</h2>
+    <p>Discover creative ideas to make your garden an oasis of beauty and tranquility. Whether you have a sprawling backyard or a small balcony, thoughtful design can transform your space.</p>
+    <ul>
+      <li><strong>Vertical Wall Gardens:</strong> Ideal for small spaces, create lush vertical green walls filled with cascading flowers and foliage.</li>
+      <li><strong>Butterfly-friendly Layouts:</strong> Choose native flowers and nectar plants to attract butterflies and pollinators.</li>
+      <li><strong>Mixed Flower Beds:</strong> Combine perennials and annuals for continuous color and interest throughout the seasons.</li>
+      <li><strong>Water Features:</strong> Incorporate small fountains or ponds to attract birds and add soothing sounds.</li>
+      <li><strong>Seasonal Color:</strong> Plan blooms to provide color peaks for every season, keeping the garden vibrant year-round.</li>
+      <li><strong>Functional Zones:</strong> Design spaces for relaxation, play, and gardening to suit family life.</li>
+    </ul>
+    <p>Our experts are ready to help you design a garden that fits your lifestyle and space perfectly.</p>
+  </section>
+
+  <section id="feedback" class="feedback" tabindex="-1" aria-label="Customer testimonials">
+    <h2>Customer Feedback</h2>
+    <ul class="testimonial-list">
+      <li class="testimonial" tabindex="0">
+        <p>Green Nest Care helped us design a butterfly haven where our kids love to explore and learn about nature.</p>
+        <cite>– Sarah W.</cite>
+      </li>
+      <li class="testimonial" tabindex="0">
+        <p>Thanks to their balcony garden setup, our little apartment now feels like an urban oasis.</p>
+        <cite>– Mark J.</cite>
+      </li>
+      <li class="testimonial" tabindex="0">
+        <p>They offer thoughtful advice and genuine care – my garden has never looked better.</p>
+        <cite>– Emma T.</cite>
+      </li>
+    </ul>
+  </section>
+
+  <section id="tips" class="tips" tabindex="-1" aria-label="Gardening tips">
+    <h2>Gardening Tips</h2>
+    <ul class="tips-list">
+      <li>Water your garden early in the morning to reduce evaporation and prevent diseases.</li>
+      <li>Use organic compost to enrich the soil for healthy, vibrant flowers.</li>
+      <li>Plant native flowers to attract local pollinators like butterflies and bees.</li>
+      <li>Remove wilted blooms regularly to promote fresh growth.</li>
+      <li>Add colorful garden stakes and fun decorations to brighten your garden.</li>
+      <li>Protect delicate plants with netting during high insect seasons.</li>
+      <li>Space your plants to ensure proper air circulation and root expansion.</li>
+      <li>Combine different flower heights and colors for dynamic visual interest.</li>
+      <li>Use mulch to conserve moisture and discourage weeds.</li>
+      <li>Share gardening tips and plants with neighbors to build community joy.</li>
+      <li>Rotate crops and flowers annually to prevent soil depletion.</li>
+      <li>Choose disease-resistant plant varieties for easier maintenance.</li>
+      <li>Keep tools clean and sharp to prevent plant damage and infections.</li>
+      <li>Create habitats with logs and stones to encourage beneficial insects.</li>
+      <li>Prune shrubs and trees lightly in early spring for best shape and bloom.</li>
+    </ul>
+  </section>
+
+  <section id="faq" class="faq" tabindex="-1" aria-label="Frequently Asked Questions">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What areas do you serve?</summary>
+      <p>We provide gardening services and consultation primarily for residential properties in the New York area including the city and nearby suburbs.</p>
+    </details>
+    <details>
+      <summary>Can you help with seasonal flower planting?</summary>
+      <p>Yes! We offer customized seasonal planting schedules to ensure your garden blooms beautifully year-round.</p>
+    </details>
+    <details>
+      <summary>Do you provide organic or eco-friendly products?</summary>
+      <p>Absolutely. Our soil mixes, fertilizers, and pest control methods prioritize eco-friendly and organic materials whenever possible.</p>
+    </details>
+    <details>
+      <summary>Can you design small balcony gardens?</summary>
+      <p>Yes, we specialize in optimizing small spaces like balconies to create lush, colorful gardens suitable for urban living.</p>
+    </details>
+    <details>
+      <summary>How do I book a consultation?</summary>
+      <p>Simply fill out our consultation booking form above with your preferred dates and questions, and our team will follow up promptly.</p>
+    </details>
+  </section>
+
+  <section class="disclaimer" tabindex="-1" aria-label="Disclaimer">
+    <p>Green Nest Care provides expert gardening services and advice based on current best practices, but factors like weather, soil variability, and natural conditions can impact plant performance.</p>
+    <p>Please follow safety instructions when gardening and consult horticulture professionals for specific plant health issues.</p>
+  </section>
+
+  <section id="contact" class="tips" style="margin-bottom: 96px;" tabindex="-1" aria-label="Contact information">
+    <h2>Contact Us</h2>
+    <p style="text-align:center;max-width:600px;margin:0 auto;color:#2e5939; font-weight:600;">
+      For inquiries, service details, or personalized consultation scheduling, contact us any time:<br/>
+      <strong>Phone:</strong> +1 (833) 444-6690<br/>
+      <strong>Email:</strong> contact@Green Nestcare.com<br/>
+      <strong>Address:</strong> Rubin Residence Hall, New York, NY 10003, USA
+    </p>
+    <img
+      src="p2.png"
+      alt="Green Nest Care office building surrounded by flowers and greenery, welcoming family-friendly atmosphere"
+      style="margin-top:24px; border-radius: 24px; box-shadow: 0 12px 24px rgb(130 188 89 / 0.5); max-width: 100%; height: auto;"
+    />
+  </section>
+</main>
+
+<footer role="contentinfo">
+  Increase Content Customer Satisfaction at Green Nest Care
+  <address>
+    Rubin Residence Hall, New York, NY 10003, USA
+  </address>
+</footer>
+
+<script>
+  (() => {
+    const form = document.getElementById('consultationForm');
+    const fullNameInput = document.getElementById('fullName');
+    const emailInput = document.getElementById('emailAddress');
+    const dateInput = document.getElementById('preferredDate');
+
+    const fullNameError = document.getElementById('fullNameError');
+    const emailError = document.getElementById('emailError');
+    const dateError = document.getElementById('dateError');
+    const formSuccess = document.getElementById('formSuccess');
+
+    function validateEmail(email) {
+      // Simple email regex
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Clear previous errors and messages
+      fullNameError.textContent = "";
+      emailError.textContent = "";
+      dateError.textContent = "";
+      formSuccess.style.display = "none";
+
+      let valid = true;
+      if(fullNameInput.value.trim() === "") {
+        fullNameError.textContent = "Full name is required.";
+        valid = false;
+      }
+      if(emailInput.value.trim() === "") {
+        emailError.textContent = "Email address is required.";
+        valid = false;
+      } else if(!validateEmail(emailInput.value.trim())) {
+        emailError.textContent = "Enter a valid email address.";
+        valid = false;
+      }
+      if(dateInput.value === "") {
+        dateError.textContent = "Please select a preferred date.";
+        valid = false;
+      } else {
+        const selectedDate = new Date(dateInput.value);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        if(selectedDate < today) {
+          dateError.textContent = "Date must be today or in the future.";
+          valid = false;
+        }
+      }
+
+      if(valid) {
+        // Simulate sending data - show success message
+        form.reset();
+        formSuccess.style.display = "block";
+        fullNameInput.focus();
+      }
+    });
+
+    // Smooth scrolling for nav anchors
+    document.querySelectorAll('nav.primary-nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('nav.primary-nav a').forEach(link =>
+          link.classList.remove('active')
+        );
+        this.classList.add('active');
+        const targetId = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        if(target) {
+          target.focus();
+          window.scrollTo({top: target.offsetTop - 60, behavior: 'smooth'});
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
+
